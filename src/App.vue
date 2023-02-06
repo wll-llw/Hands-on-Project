@@ -1,12 +1,34 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </nav>
+    </nav> -->
+    <top-nav></top-nav>
+    <base-side-nav></base-side-nav>
+    <breadcrumb></breadcrumb>
     <router-view/>
   </div>
 </template>
+
+<script>
+import TopNav from '@/components/nav/top-nav.vue';
+import baseSideNav from './components/nav/base-side-nav.vue';
+import Breadcrumb from './components/breadcrumb.vue';
+
+export default {
+  components: {
+    TopNav,
+    baseSideNav,
+    Breadcrumb
+  },
+  data () {
+    return {
+      // navData: 
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

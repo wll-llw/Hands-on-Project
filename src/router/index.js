@@ -7,8 +7,42 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: { title: '工作台'}
+  },
+  {
+    path: '/social',
+    name: 'social',
+    component: () => import('../views/social/index.vue'),
+    redirect: '/social/agent',
+    meta: { title: 'WA' },
+    children: [{
+      path: 'agent',
+      component: () => import('../views/social/agent.vue'),
+      name: 'agent',
+      meta: { title: '坐席管理' }
+    }, {
+      path: 'account',
+      component: () => import('../views/social/account.vue'),
+      name: 'account',
+      meta: { title: '账号管理' }
+    }, {
+      path: 'send',
+      component: () => import('../views/social/send.vue'),
+      name: 'send',
+      meta: { title: '群发任务中心' }
+    }]
+  },
+  {
+    path: '/download',
+    name: 'download',
+    component: () => import('../views/download.vue'),
+    meta: { title: '客户端下载' }
   },
   {
     path: '/about',

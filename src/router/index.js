@@ -36,6 +36,16 @@ const routes = [
       component: () => import('../views/social/send.vue'),
       name: 'send',
       meta: { title: '群发任务中心' }
+    }, {
+      path: 'map',
+      component: () => import('../views/social/map.vue'),
+      name: 'map',
+      meta: { title: '导图中心' }
+    }, {
+      path: 'elm',
+      component: () => import('../views/social/elm.vue'),
+      name: 'elm',
+      meta: { title: '新增报案' }
     }]
   },
   {

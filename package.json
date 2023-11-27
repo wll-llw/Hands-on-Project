@@ -7,12 +7,17 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@antv/x6": "^2.16.1",
+    "@ffmpeg/core": "^0.12.4",
+    "@ffmpeg/ffmpeg": "^0.12.7",
+    "@ffmpeg/util": "^0.12.1",
     "core-js": "^3.8.3",
     "echarts": "^5.4.3",
     "element-ui": "^2.15.12",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

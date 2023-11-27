@@ -6,9 +6,11 @@
 
 <script>
 import './style.scss'
+
 export default {
   data() {
-    return {}
+    return {
+    }
   },
   methods: {
     shareScreen: async () => {
@@ -28,7 +30,7 @@ export default {
         chunks.push(e.data);
       });
 
-      mediaRecorder.addEventListener("stop", () => {
+      mediaRecorder.addEventListener("stop", function() {
         const blob = new Blob(chunks, { type: chunks[0].type });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
@@ -37,7 +39,7 @@ export default {
         a.click();
       });
       mediaRecorder.start();
-    }
+    },
   }
 }
 </script>

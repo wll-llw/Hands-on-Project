@@ -33,7 +33,7 @@ const routes = [
       meta: { title: '账号管理' }
     }, {
       path: 'send',
-      component: () => import('../views/social/send.vue'),
+      component: () => import('../views/social/elm.vue'),
       name: 'send',
       meta: { title: '群发任务中心' }
     }, {
@@ -46,6 +46,11 @@ const routes = [
       component: () => import('../views/social/elm.vue'),
       name: 'elm',
       meta: { title: '新增报案' }
+    }, {
+      path: 'form-table',
+      component: () => import('../views/social/form-table.vue'),
+      name: 'form-table',
+      meta: { title: '表格校验' }
     }]
   },
   {

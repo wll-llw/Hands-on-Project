@@ -46,6 +46,11 @@ const routes = [
       component: () => import('../views/social/elm.vue'),
       name: 'elm',
       meta: { title: '新增报案' }
+    }, {
+      path: 'treeNode',
+      component: () => import('../views/social/treeNode.vue'),
+      name: 'treeNode',
+      meta: { title: '折叠树' }
     }]
   },
   {

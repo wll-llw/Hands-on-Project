@@ -23,6 +23,7 @@
             <el-menu-item index="/social/send">群发任务中心</el-menu-item>
             <el-menu-item index="/social/map">导图</el-menu-item>
             <el-menu-item index="/social/elm">新增报案</el-menu-item>
+            <el-menu-item index="/social/treeNode">折叠树</el-menu-item>
         </el-submenu>
         <el-menu-item index="/download">客户端下载</el-menu-item>
       </el-submenu>

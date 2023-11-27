@@ -5,123 +5,75 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
 import { Graph } from '@antv/x6'
 import dagre from 'dagre'
+import { graphData } from '@/mockData.ts'
 
-const graphData = {
-  nodes: [
-    {
-      id: '1',
-      data: {
-        description: 'This is node 1.',
-      },
-      width: 100,
-      height: 40,
-    },
-    {
-      id: '2',
-      data: {
-        description: 'This is node 2.'
-      },
-      width: 100,
-      height: 40,
-    },
-    {
-      id: '3',
-      data: {
-        description: 'This is node 3.'
-      },
-      width: 100,
-      height: 40,
-    },
-    {
-      id: '4',
-      data: {
-        description: 'This is node 4.'
-      },
-      width: 100,
-      height: 40,
-    }
-  ],
-  edges: [
-    {
-      source: '1',
-      target: '2',
-    },
-    {
-      source: '1',
-      target: '3',
-    },
-    {
-      source: '2',
-      target: '4',
-    }
-  ]
-};
-
-const g = new dagre.graphlib.Graph();
-
-// Set an object for the graph label
-g.setGraph({});
-
-// Default to assigning a new object as a label for each new edge.
-g.setDefaultEdgeLabel(function () { return {}; });
-
-graphData.nodes.forEach(node => {
-  g.setNode(node.id, { id: node.id, label: node.id, width: node.width, height: node.height });
-})
-
-graphData.edges.forEach(node => {
-  g.setEdge(node.source, node.target);
-})
-
-dagre.layout(g);
-
-const data = {
-  nodes: [],
-  edges: graphData.edges.map(edge => ({
-    ...edge,
-    shape: 'edge',
-    // label: `${edge.source}-${edge.target}`,
-    attrs: {
-      // line 是选择器名称，选中的边的 path 元素
-      line: {
-        stroke: '#8f8f8f',
-        strokeWidth: 1,
-      },
-    },
-  })),
-};
-
-g.nodes().forEach(function (v) {
-  //  console.log("Node " + v + ": " + JSON.stringify(g.node(v)));
-  data.nodes.push(g.node(v))
-});
-
-console.log(data)
-
+const g = new dagre.graphlib.Graph()
 
 export default {
   name: 'Example',
-  setup() {
-    const container = ref(null)
-    onMounted(() => {
-      const graph = new Graph({
-        container: container.value,
-        background: {
-          color: '#F2F7FA',
-        },
-      })
-
-      graph.fromJSON(data)
-      graph.centerContent()
-    })
-
+  data() {
     return {
-      container,
+      treeData: null,
     }
   },
+  mounted() {
+    this.init()
+    this.treeData = {
+      nodes: [],
+      edges: graphData.edges.map((edge) => ({
+        ...edge,
+        shape: 'edge',
+        // label: `${edge.source}-${edge.target}`,
+        attrs: {
+          // line 是选择器名称，选中的边的 path 元素
+          line: {
+            stroke: '#8f8f8f',
+            strokeWidth: 1,
+          },
+        },
+      })),
+    }
+
+    g.nodes().forEach((v) => {
+      //  console.log("Node " + v + ": " + JSON.stringify(g.node(v)));
+      this.treeData.nodes.push(g.node(v))
+    })
+
+    const graph = new Graph({
+      container: this.$refs.container,
+      background: {
+        color: '#F2F7FA',
+      },
+    })
+
+    graph.fromJSON(this.treeData)
+    graph.centerContent()
+  },
+  methods: {
+    init() {
+      g.setGraph({})
+      g.setDefaultEdgeLabel(function () {
+        return {}
+      })
+
+      graphData.nodes.forEach((node) => {
+        g.setNode(node.id, {
+          id: node.id,
+          label: node.id,
+          width: node.width,
+          height: node.height,
+        })
+      })
+
+      graphData.edges.forEach((node) => {
+        g.setEdge(node.source, node.target)
+      })
+
+      dagre.layout(g)
+    }
+  }
 }
 </script>
 

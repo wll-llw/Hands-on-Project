@@ -9,7 +9,7 @@
   position: absolute;
   top: 102px;
   left: 200px;
-  padding: 16px 20px 0 12px;
+  padding: 16px 20px 16px 12px;
   width: calc(100vw - 232px);
   background-color: #E9E9E9;
 }

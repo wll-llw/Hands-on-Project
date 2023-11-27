@@ -1,6 +1,8 @@
 interface INode<T> {
   id: string
   data?: T
+  width?: number
+  height?: number
 }
 
 interface IEdge<T> {
@@ -13,4 +15,5 @@ interface Graph<T = unknown, K = unknown> {
   nodes?: INode<T>[]
   edges?: IEdge<K>[]
 }
+
 
